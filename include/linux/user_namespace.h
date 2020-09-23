@@ -53,6 +53,7 @@ enum ucount_type {
 	UCOUNT_COUNTS,
 };
 
+// User Namespace 主要用来隔离安全相关的标识符（idebtifier）和属性（attribute），包括用户ID、用户组ID、root目录、key（密钥）以及特殊权限。
 struct user_namespace {
 	struct uid_gid_map	uid_map;
 	struct uid_gid_map	gid_map;

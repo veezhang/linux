@@ -13,12 +13,13 @@ struct user_namespace;
 extern struct user_namespace init_user_ns;
 
 struct timens_offsets {
-	struct timespec64 monotonic;
-	struct timespec64 boottime;
+	struct timespec64 monotonic; // 是单调时间，即从某个时间点开始到现在过去的时间。用户不能修改这个时间，但是当系统进入休眠（suspend）时，CLOCK_MONOTONIC是不会增加的。
+	struct timespec64 boottime; // 与CLOCK_MONOTONIC类似，但是当suspend时，会依然增加。
 };
 
+// Time Namespace 隔离时间，包含 CLOCK_MONOTONIC 和 CLOCK_BOOTTIME 
 struct time_namespace {
-	struct kref		kref;
+	struct kref		kref; // 引用计数
 	struct user_namespace	*user_ns;
 	struct ucounts		*ucounts;
 	struct ns_common	ns;

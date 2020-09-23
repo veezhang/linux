@@ -853,12 +853,13 @@ static inline void cgroup_sk_free(struct sock_cgroup_data *skcd) {}
 
 #endif	/* CONFIG_CGROUP_DATA */
 
+// Cgroup Namespace 提供cgroup的一些隔离
 struct cgroup_namespace {
-	refcount_t		count;
+	refcount_t		count; // 引用计数
 	struct ns_common	ns;
 	struct user_namespace	*user_ns;
 	struct ucounts		*ucounts;
-	struct css_set          *root_cset;
+	struct css_set          *root_cset; // cgroup 子系统的状态集
 };
 
 extern struct cgroup_namespace init_cgroup_ns;

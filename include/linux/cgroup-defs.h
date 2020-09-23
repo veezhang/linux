@@ -135,11 +135,13 @@ struct cgroup_file {
  * Fields marked with "PI:" are public and immutable and may be accessed
  * directly without synchronization.
  */
+// cgroup 子系统的状态
 struct cgroup_subsys_state {
 	/* PI: the cgroup that this css is attached to */
-	struct cgroup *cgroup;
+	struct cgroup *cgroup; // 附加到的 cgroup
 
 	/* PI: the cgroup subsystem that this css is attached to */
+	// 子cgroup 系统，包含抽象的函数指针，和一些其他字段
 	struct cgroup_subsys *ss;
 
 	/* reference count - access via css_[try]get() and css_put() */
@@ -192,6 +194,7 @@ struct cgroup_subsys_state {
  * list_add()/del() can bump the reference count on the entire cgroup
  * set for a task.
  */
+// cgroup 子系统的状态集
 struct css_set {
 	/*
 	 * Set of subsystem states, one for each subsystem. This array is

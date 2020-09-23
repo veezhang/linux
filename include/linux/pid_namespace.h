@@ -17,8 +17,9 @@
 
 struct fs_pin;
 
+// PID Namespace 隔离PID
 struct pid_namespace {
-	struct kref kref;
+	struct kref kref; // 引用计数
 	struct idr idr;
 	struct rcu_head rcu;
 	unsigned int pid_allocated;

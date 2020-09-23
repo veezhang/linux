@@ -21,10 +21,11 @@ enum uts_proc {
 struct user_namespace;
 extern struct user_namespace init_user_ns;
 
+// UTS Namespace 主要提供了主机名和域名的隔离。
 struct uts_namespace {
-	struct kref kref;
-	struct new_utsname name;
-	struct user_namespace *user_ns;
+	struct kref kref; // 引用计数
+	struct new_utsname name; // 系统相关
+	struct user_namespace *user_ns; // 安全标识和属性
 	struct ucounts *ucounts;
 	struct ns_common ns;
 } __randomize_layout;

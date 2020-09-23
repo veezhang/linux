@@ -28,8 +28,9 @@ struct fs_struct;
  * As soon as a single namespace is cloned or unshared, the
  * nsproxy is copied.
  */
+// 管理 task_struct 所属的 namespace 资源，task_struct 的成员变量
 struct nsproxy {
-	atomic_t count;
+	atomic_t count; // 引用计数
 	struct uts_namespace *uts_ns;
 	struct ipc_namespace *ipc_ns;
 	struct mnt_namespace *mnt_ns;

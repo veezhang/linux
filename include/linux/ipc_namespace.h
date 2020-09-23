@@ -26,8 +26,9 @@ struct ipc_ids {
 	struct rhashtable key_ht;
 };
 
+// IPC Namespace 包括 System V IPC(Message queues, Semaphore sets,  Shared memory segments)，POSIX message queues
 struct ipc_namespace {
-	refcount_t	count;
+	refcount_t	count; // 引用计数
 	struct ipc_ids	ids[3];
 
 	int		sem_ctls[4];

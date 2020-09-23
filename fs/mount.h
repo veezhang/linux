@@ -5,8 +5,9 @@
 #include <linux/ns_common.h>
 #include <linux/fs_pin.h>
 
+// Mount Namespace 隔离文件系统挂载点对文件系统做隔离。
 struct mnt_namespace {
-	atomic_t		count;
+	atomic_t		count; // 引用计数
 	struct ns_common	ns;
 	struct mount *	root;
 	/*

@@ -53,16 +53,17 @@ struct bpf_prog;
 #define NETDEV_HASHBITS    8
 #define NETDEV_HASHENTRIES (1 << NETDEV_HASHBITS)
 
+// Network Namespace 提供与网络关联的系统资源的隔离
 struct net {
 	/* First cache line can be often dirtied.
 	 * Do not place here read-mostly fields.
 	 */
 	refcount_t		passive;	/* To decide when the network
 						 * namespace should be freed.
-						 */
+						 */ // 决定何时释放网络名称空间。
 	refcount_t		count;		/* To decided when the network
 						 *  namespace should be shut down.
-						 */
+						 */ // 决定何时应关闭网络名称空间。
 	spinlock_t		rules_mod_lock;
 
 	unsigned int		dev_unreg_count;
